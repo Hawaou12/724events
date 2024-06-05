@@ -17,7 +17,8 @@ const Slider = () => {
   useEffect(() => {
     let timeout;
     const nextCard = () => {
-      console.log(Play); // Correction ici
+      // eslint-disable-next-line no-console
+      console.log('Play');
       return setTimeout(
         () =>
           // eslint-disable-next-line no-unsafe-optional-chaining
