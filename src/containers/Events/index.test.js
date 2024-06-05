@@ -108,4 +108,7 @@ describe("When Events is created", () => {
       await screen.findByText("1 site web dédié");
     });
   });
+  
+
+  
 });

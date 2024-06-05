@@ -23,4 +23,34 @@ describe("When Menu is created", () => {
       expect(window.document.location.hash).toEqual("#contact");
     });
   });
+  it("When click on Nos services button", () => {
+  const home  = <Menu />;
+  const { getByText } = render(home );
+  
+  expect(getByText("Nos services")).toHaveAttribute(
+    "href",
+    "#nos-services"
+  );
+  });
+
+  it("When click on Nos réalisations button", () => {
+    const home  = <Menu />;
+    const { getByText } = render(home );
+    
+    expect(getByText("Nos réalisations")).toHaveAttribute(
+      "href",
+      "#nos-realisations"
+    );
+    });
+
+    it("When click on Notre équipe button", () => {
+      const home  = <Menu />;
+      const { getByText } = render(home );
+      
+      expect(getByText("Notre équipe")).toHaveAttribute(
+        "href",
+        "#notre-equipe"
+      );
+      });
+
 });

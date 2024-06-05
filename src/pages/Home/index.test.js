@@ -42,3 +42,35 @@ describe("When a page is created", () => {
     // to implement
   })
 });
+
+//  test les hrefs 
+
+it("When click on address ", () => {
+const home  = <Home />;
+const { getByText } = render(home );
+
+expect(getByText("45 avenue de la République, 75000 Paris")).toHaveAttribute(
+  "href",
+  "https://goo.gl/maps/FyCWp5uRpWPMeGwq9"
+);
+});
+
+it("When click on phone number ", () => {
+  const home  = <Home />;
+  const { getByText } = render(home );
+  
+  expect(getByText("01 23 45 67 89")).toHaveAttribute(
+    "href",
+    "tel:0123456789"
+  );
+  });
+
+  it("When click on email address", () => {
+    const home  = <Home />;
+    const { getByText } = render(home );
+    
+    expect(getByText("contact@77events.com")).toHaveAttribute(
+      "href",
+      "mailto:contact@77events.com"
+    );
+    });
