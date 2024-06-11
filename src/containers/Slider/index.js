@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
@@ -17,8 +16,7 @@ const Slider = () => {
   useEffect(() => {
     let timeout;
     const nextCard = () => {
-      // eslint-disable-next-line no-console
-      console.log('Play');
+      console.log(Play);
       return setTimeout(
         () =>
           // eslint-disable-next-line no-unsafe-optional-chaining

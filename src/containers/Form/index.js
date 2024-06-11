@@ -17,7 +17,6 @@ const Form = ({ onSuccess, onError }) => {
     async (evt) => {
       evt.preventDefault();
       const data = new FormData(evt.target);
-      // eslint-disable-next-line no-console
       console.log(Object.fromEntries(data));
 
       setSending(true);
@@ -85,3 +84,5 @@ Form.defaultProps = {
   onError: () => null,
   onSuccess: () => !null,
 };
+
+export default Form;
