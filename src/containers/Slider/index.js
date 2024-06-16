@@ -1,76 +1,53 @@
-import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
-
 import "./style.scss";
 
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const [Play, setPlay] = useState(true);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-  );
 
+  // Assurer que les données existent avant de procéder
+  const byDateAsc = data?.focus ? [...data.focus].sort((evtA, evtB) =>
+    new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
+  ) : [];
+
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    let timeout;
-    const nextCard = () => {
-      console.log(Play);
-      return setTimeout(
-        () =>
-          // eslint-disable-next-line no-unsafe-optional-chaining
-          index < byDateDesc?.length - 1 ? setIndex(index + 1) : setIndex(0),
-        5000
-      );
-    };
-
-    if (Play) {
-      timeout = nextCard();
+    if (byDateAsc.length > 0) {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => (prevIndex + 1) % byDateAsc.length);
+      }, 5000);
+      return () => clearInterval(interval);
     }
+  }, [byDateAsc.length]);
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [Play, byDateDesc, index]);
+  if (!byDateAsc.length) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="SlideCardList">
-      {Play ? (
-        <FaPauseCircle className="icon" onClick={() => setPlay(false)} />
-      ) : (
-        <FaPlayCircle className="icon" onClick={() => setPlay(true)} />
-      )}
-      <div>
-        {byDateDesc?.map((event) => (
-          <div
-            key={event.id}
-            className={
-              Play
-                ? `  play-animation   SlideCard SlideCard--${
-                    index === event.id ? "display" : "hide"
-                  }
-                    `
-                : ` pause-animation   SlideCard SlideCard--${
-                    index === event.id ? "display" : "hide"
-                  }`
-            }
-          >
-            <img src={event.cover} alt="forum" key={event.id} />
-            <div key={event.title} className="SlideCard__descriptionContainer ">
-              <div className="SlideCard__description" key={event.title}>
-                <h3 key={event.cover}>{event.title} </h3>
-                <p key={event.description}>{event.description}</p>
-                <div key={event.title}>{getMonth(new Date(event.date))}</div>
-              </div>
+      {byDateAsc.map((event, idx) => (
+        <div
+          key={event.id} // Utiliser un identifiant unique ici
+          className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}
+        >
+          <img src={event.cover} alt="forum" />
+          <div className="SlideCard__descriptionContainer">
+            <div className="SlideCard__description">
+              <h3>{event.title}</h3>
+              <p>{event.description}</p>
+              <div>{getMonth(new Date(event.date))}</div>
             </div>
           </div>
-        ))}
-        <div className="SlideCard__paginationContainer">
-          <div className="SlideCard__pagination" />
-
-          {byDateDesc?.map((_, radioIdx) => (
+        </div>
+      ))}
+      <div className="SlideCard__paginationContainer">
+        <div className="SlideCard__pagination">
+          {byDateAsc.map((event, radioIdx) => (
             <input
-              key={`${_.date}`}
+              key={event.id} // Utiliser un identifiant unique ici
               type="radio"
               name="radio-button"
               checked={index === radioIdx}
