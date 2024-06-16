@@ -1,15 +1,15 @@
-import Menu from "../../containers/Menu";
-import ServiceCard from "../../components/ServiceCard";
-import EventCard from "../../components/EventCard";
-import PeopleCard from "../../components/PeopleCard";
+import Menu from "../../containers/Menu/Menu";
+import ServiceCard from "../../components/ServiceCard/ServiceCard";
+import EventCard from "../../components/EventCard/EventCard";
+import PeopleCard from "../../components/PeopleCard/PeopleCard";
 
 import "./style.scss";
-import EventList from "../../containers/Events";
-import Slider from "../../containers/Slider";
+import EventList from "../../containers/Events/Events";
+import Slider from "../../containers/Slider/Slider";
 import Logo from "../../components/Logo";
 import Icon from "../../components/Icon";
-import Form from "../../containers/Form";
-import Modal from "../../containers/Modal";
+import Form from "../../containers/Form/Form";
+import Modal from "../../containers/Modal/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
