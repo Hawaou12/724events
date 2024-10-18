@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import PropTypes from "prop-types";
 import { getMonth } from "../../helpers/Date";
 
@@ -29,15 +31,17 @@ const EventCard = ({
   </div>
 );
 
+
+
 EventCard.propTypes = {
-  // eslint-disable-next-line react/require-default-props
+  
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
-  // eslint-disable-next-line react/require-default-props
+ 
   title: PropTypes.string,
   small: PropTypes.bool,
-  // eslint-disable-next-line react/require-default-props
+
   label: PropTypes.string,
 };
 

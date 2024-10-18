@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Slider from "./index";
+import Slider from "./Slider";
 import { api, DataProvider } from "../../contexts/DataContext";
 
 const data = {

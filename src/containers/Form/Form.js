@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field/Field";
@@ -20,10 +19,12 @@ const Form = ({ onSuccess, onError }) => {
             console.log(Object.fromEntries(data));
 
             setSending(true);
-            // We try to call mockContactApi
+            // Nous essayons d'appeler mockContactApi
+
             try {
                 await mockContactApi();
                 setSending(false);
+                onSuccess(); // Appel de la fonction onSuccess en cas de succès
             } catch (err) {
                 setSending(false);
                 onError(err);
@@ -42,7 +43,7 @@ const Form = ({ onSuccess, onError }) => {
                     <Select selection={["Personel", "Entreprise"]} onChange={() => null} label="Personel / Entreprise" type="large" titleEmpty />
 
                     <Field placeholder="" label="Email" name="Email" type={FIELD_TYPES.InputEmail} />
-                    <Button type={BUTTON_TYPES.SUBMIT} disabled={sending} onClick={onSuccess}>
+                    <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
                         {sending ? "En cours" : "Envoyer"}
                     </Button>
                 </div>
@@ -56,13 +57,12 @@ const Form = ({ onSuccess, onError }) => {
 
 Form.propTypes = {
     onError: PropTypes.func,
-    // eslint-disable-next-line react/require-default-props
     onSuccess: PropTypes.func,
 };
 
 Form.defaultProps = {
     onError: () => null,
-    onSuccess: () => !null, // méssage envoyé avec succès
+    onSuccess: () => {}, // Fonction vide par défaut
 };
 
 export default Form;

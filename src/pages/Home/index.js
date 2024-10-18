@@ -84,7 +84,10 @@ const Page = () => {
             <footer className="row">
                 <div className="col presta">
                     <h3>Notre derniére prestation</h3>
-                    <EventCard imageSrc={lastPerformance?.[0].cover} title={lastPerformance?.[0].title} date={new Date(lastPerformance?.[0].date)} label={lastPerformance?.[0].type} />
+                    <EventCard imageSrc={lastPerformance?.[0].cover} 
+                    title={lastPerformance?.[0].title} 
+                    date={new Date(lastPerformance?.[0].date)} 
+                    label={lastPerformance?.[0].type} />
                 </div>
                 <div className="col contact">
                     <h3>Contactez-nous</h3>

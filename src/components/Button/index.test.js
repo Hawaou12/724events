@@ -1,5 +1,7 @@
+/* eslint-disable import/extensions */
 import { fireEvent, render, screen } from "@testing-library/react";
-import Button, { BUTTON_TYPES } from "./index";
+// eslint-disable-next-line import/no-unresolved
+import Button, { BUTTON_TYPES } from "./Button";
 
 describe("When a button is created", () => {
   it("the button must include a title", () => {

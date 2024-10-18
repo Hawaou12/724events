@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PeopleCard from "./index";
+import PeopleCard from "./PeopleCard";
 
 describe("When a people card is created", () => {
   it("an image is display with alt value", () => {

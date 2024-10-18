@@ -1,4 +1,6 @@
+/* eslint-disable consistent-return */
 import { useEffect, useState } from "react";
+ 
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 import "./style.scss";
@@ -12,7 +14,7 @@ const Slider = () => {
     new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
   ) : [];
 
-  // eslint-disable-next-line consistent-return
+ 
   useEffect(() => {
     if (byDateAsc.length > 0) {
       const interval = setInterval(() => {
