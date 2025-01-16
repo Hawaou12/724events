@@ -15,7 +15,10 @@ import { useData } from "../../contexts/DataContext";
 const Page = () => {
     const { data } = useData();
 
-    const lastPerformance = data?.events.sort((evtA, evtB) => new Date(evtA.date) < new Date(evtB.date));
+    // Récupérer uniquement la dernière prestation
+    const lastPerformance = data?.events
+        .slice()
+        .sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date))[0];
 
     return (
         <>
@@ -83,11 +86,17 @@ const Page = () => {
             </main>
             <footer className="row">
                 <div className="col presta">
-                    <h3>Notre derniére prestation</h3>
-                    <EventCard imageSrc={lastPerformance?.[0].cover} 
-                    title={lastPerformance?.[0].title} 
-                    date={new Date(lastPerformance?.[0].date)} 
-                    label={lastPerformance?.[0].type} />
+                    <h3>Notre dernière prestation</h3>
+                    {lastPerformance ? (
+                        <EventCard
+                            imageSrc={lastPerformance.cover}
+                            title={lastPerformance.title}
+                            date={new Date(lastPerformance.date)}
+                            label={lastPerformance.type}
+                        />
+                    ) : (
+                        <p>Aucune prestation disponible pour le moment.</p>
+                    )}
                 </div>
                 <div className="col contact">
                     <h3>Contactez-nous</h3>
